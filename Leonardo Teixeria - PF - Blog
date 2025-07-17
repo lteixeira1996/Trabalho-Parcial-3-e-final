@@ -1,0 +1,117 @@
+# Leonardo Teixeria - PF - Blog
+
+## 📝 Descrição do Projeto
+
+Aplicativo web estilo blog desenvolvido com Python e Django, com funcionalidades de autenticação, CRUD de postagens, perfis de usuário e envio de mensagens entre usuários.
+
+---
+
+## 🔧 Funcionalidades Implementadas
+
+### 📄 Estrutura de Páginas
+- Página **Home**
+- Página **Sobre mim** (`/about/`)
+- Página **Páginas/Publicações** (`/pages/`)
+  - Visualização em lista
+  - Página de detalhe
+  - Mensagem "Ainda não há páginas" quando vazia
+- CRUD completo de páginas
+  - Criar
+  - Editar (restrito a usuários logados)
+  - Excluir (restrito a usuários logados)
+
+### 👤 Autenticação e Perfis
+- Registro de usuários com:
+  - Nome de usuário
+  - Email
+  - Senha
+- Login e Logout
+- Página de perfil com:
+  - Nome
+  - Sobrenome
+  - Email
+  - Avatar
+  - Biografia / link / data de nascimento
+- Edição do perfil
+- Alteração de senha
+- Controle de acesso (login obrigatório para certas ações)
+
+### 💬 Sistema de Mensagens
+- Aplicativo de mensagens entre usuários autenticados
+
+---
+
+## 🧱 Estrutura Técnica
+
+### 🗂 Aplicativos Django
+- `blog/`: gerenciamento das páginas/publicações
+- `accounts/`: gerenciamento de usuários, autenticação e perfis
+- `messages/`: envio de mensagens privadas entre usuários
+
+### 📦 Modelos
+Modelo principal (ex: `Post`):
+- `titulo`: CharField
+- `subtitulo`: CharField
+- `conteudo`: RichTextField (com CKEditor)
+- `imagem`: ImageField
+- `data`: DateTimeField
+
+Outros modelos:
+- `Perfil`
+- `Mensagem`
+
+### 🧩 Templates e Herança
+- Template base com uso de `{% block %}` e herança
+- NavBar com navegação entre páginas principais
+
+---
+
+## ✅ Requisitos Técnicos Atendidos
+
+- [x] Uso de **views baseadas em classe (CBV)** (mínimo 2)
+- [x] Uso de **mixin** em CBV
+- [x] Uso de **decorador** em view baseada em função
+- [x] Mensagem quando não houver registros
+- [x] Readme documentado
+- [x] Arquivo `.gitignore` com:
+  - `__pycache__/`
+  - `db.sqlite3`
+  - `/media`
+- [x] `requirements.txt` atualizado
+- [x] Admin configurado com todos os modelos
+- [x] Não subir o banco de dados para o repositório
+
+---
+
+## 🚫 O que **não** foi incluído (por recomendação)
+
+- Banco de dados `db.sqlite3`
+- Pastas de mídia de usuários (`/media`)
+- Códigos escritos com Python puro (sem Django)
+
+---
+
+## 🚀 Como executar o projeto localmente
+
+```bash
+# Clonar o repositório
+git clone https://github.com/seuusuario/seurepositorio.git
+cd seurepositorio
+
+# Criar ambiente virtual
+python -m venv venv
+source venv/bin/activate  # Linux / Mac
+venv\Scripts\activate     # Windows
+
+# Instalar dependências
+pip install -r requirements.txt
+
+# Criar migrações e migrar
+python manage.py makemigrations
+python manage.py migrate
+
+# Criar superusuário (admin)
+python manage.py createsuperuser
+
+# Rodar servidor
+python manage.py runserver
